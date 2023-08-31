@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Halloween Page</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Creepster">
+</head>
+<body>
+
+    <header>
+        <h1 class="creepy-title">WestHills NC Halloween</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="application.html">Application</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Video Embed -->
+        <iframe src="https://drive.google.com/file/d/1bGq9Da3FLL_fhAeTDa1J5F0UAO0UDZhV/preview" width="640" height="480"></iframe>
+
+        <!-- Flyer Design -->
+        <img src="https://www.westhillsnc.org/productphotos/page4_428.jpg" width="640" alt="Flyer Design">
+
+        <!-- Image Carousel -->
+        <div class="carousel" id="carousel">
+            <button id="prevButton" onclick="slide(-1)">Previous</button>
+            <div class="slides" id="slides">
+                <img src="https://www.westhillsnc.org/productphotos/page1_428.jpg" alt="Image 1">
+                <img src="https://www.westhillsnc.org/productphotos/page2_428.jpg" alt="Image 2">
+                <img src="https://www.westhillsnc.org/productphotos/page3_428.jpg" alt="Image 3">
+            </div>
+            <button id="nextButton" onclick="slide(1)">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll(".slides img");
+        const totalSlides = slides.length;
+
+        function slide(direction) {
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
+            if (currentSlide >= totalSlides) currentSlide = 0;
+
+            let scrollAmount = slides[0].clientWidth * currentSlide;
+            document.getElementById("slides").scrollTo({
+                top: 0,
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+
+</body>
+</html>
