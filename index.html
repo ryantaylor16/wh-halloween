@@ -19,6 +19,17 @@
     </header>
 
     <div class="container">
+        <!-- Countdown Timer -->
+        <div class="countdown">
+            <h2 class="countdown-text">The countdown to judgment day</h2>
+            <div id="countdown-timer"></div>
+            <p class="countdown-description">
+                JUDGING to begin at sunset on OCTOBER 22, 2023<br>
+                WINNERS TO BE ANNOUNCED ONLINE on Oct. 23, 2023<br>
+                Lawn Signs will be placed on the lawns of the winning houses.
+            </p>
+        </div>
+
         <!-- Video Embed -->
         <iframe src="https://drive.google.com/file/d/1bGq9Da3FLL_fhAeTDa1J5F0UAO0UDZhV/preview" width="640" height="480"></iframe>
 
@@ -54,6 +65,29 @@
                 behavior: 'smooth'
             });
         }
+
+        // Countdown timer logic
+        const targetDate = new Date('October 22, 2023 18:00:00 PST').getTime();
+
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const timeRemaining = targetDate - now;
+
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            const countdownElement = document.getElementById("countdown-timer");
+            countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            if (timeRemaining < 0) {
+                countdownElement.innerHTML = "Judgment Day has arrived!";
+            }
+        };
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
     </script>
 
 </body>
